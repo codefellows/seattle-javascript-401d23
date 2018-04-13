@@ -14,7 +14,7 @@
 * Read [what is npm]
 * Read [just another guide to ES6]
 * Skim [node and es6 docs]
-* Read up to (but not including) "A Worked Example." [a gentle intro to tdd in js]
+* Read **up to (but not including)** *"A Worked Example."* [a gentle intro to tdd in js]
 
 ## Outline
 
