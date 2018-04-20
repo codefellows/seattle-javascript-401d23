@@ -5,6 +5,10 @@ const fs = require('fs');
 const reader = module.exports = {};
 
 reader.readFiles = (paths, callback) => {
+  // console.log(paths, 'PATHS');
+  if (!Array.isArray(paths) || !paths.length) {
+    throw new Error(`${paths} is not an array`);
+  }
   fs.readFile(paths[0], 'utf8', (err1, data1) => {
     if (err1) {
       const customError = {
