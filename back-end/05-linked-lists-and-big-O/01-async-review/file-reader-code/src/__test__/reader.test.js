@@ -16,7 +16,7 @@ const badFiles = [
 ];
 
 const mockData = [];
-const compare2 = [];
+const realData = [];
 
 // runs before all it/test blocks
 beforeAll((done) => {
@@ -35,9 +35,9 @@ beforeAll((done) => {
 describe('testing file reader module', () => {
   it('should return an array of text equal to COMPARE1 array', () => {
     return fileReader.readFiles(files, (data) => {
-      compare2.push(data);
-      if (compare2.length === mockData.length) {
-        expect(compare2).toEqual(mockData);
+      realData.push(data);
+      if (realData.length === mockData.length) {
+        expect(realData).toEqual(mockData);
       }
     });
   });
