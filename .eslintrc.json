@@ -6,11 +6,12 @@
     "arrow-body-style": "off",
     "global-require": "off",
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "linebreak-style": "off",
     "no-multi-assign": "off",
     "no-param-reassign": ["error", { "props": false }],
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "no-trailing-spaces":"off",
-    "linebreak-style": "off",
+    "no-underscore-dangle": "off",
     "strict": "off"
   }
 }

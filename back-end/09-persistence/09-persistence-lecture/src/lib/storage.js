@@ -5,8 +5,6 @@ const logger = require('./logger');
 const storage = module.exports = {};
 const Promise = require('bluebird');
 const fs = Promise.promisifyAll(require('fs'), { suffix: 'Prom' });
-// const memory = {};
-
 
 // schema is the type of resource, in this case note, and it will just be a 'string' saying this is a note schema
 // item is an actual object we'll pass in to post a newly created note
@@ -61,8 +59,8 @@ storage.fetchOne = function fetchOne(schema, id) {
   // });
 };
 
-storage.fetchAll = function fetchAll() {
-  
+storage.fetchAll = function fetchAll(schema) {
+
 };
 
 

@@ -11,4 +11,5 @@ module.exports = class {
     this.id = uuid();
     logger.log(logger.INFO, `NOTE: Created a new note: ${JSON.stringify(this)}`);
   }
-}
+};
+
