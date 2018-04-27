@@ -8,6 +8,7 @@
     "no-multi-assign": "off",
     "no-param-reassign": ["error", { "props": false }],
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-underscore-dangle": "off",
     "no-trailing-spaces":"off",
     "linebreak-style": "off",
     "strict": "off"
