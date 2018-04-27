@@ -23,18 +23,18 @@ const writeFilePromise = (data) => {
 }
 
 readFilePromise()
-.then(oldText => {
-   return writeFilePromise(oldText);
-})
-.then(successMessage => {
-  console.log(successMessage);
-})
-// .then(sucessMessageAgain => {
-//   console.log(sucessMessageAgain);
-// })
-.catch(err => {
-  console.log(err);
-})
+  .then(oldText => {
+    return writeFilePromise(oldText)
+  })
+  .then(foo => {
+    console.log(foo, 'first message');
+  })
+  // .then(sucessMessageAgain => {
+  //   console.log(sucessMessageAgain, 'again');
+  // })
+  .catch(err => {
+    console.log(err);
+  })
 
 const readFileCallback = () => {
   return fs.readFile(`${__dirname}/assets/data.txt`, (err, data) => {
