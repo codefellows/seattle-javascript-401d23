@@ -1,97 +1,108 @@
-![cf](http://i.imgur.com/7v5ASc8.png) 14: Relationship Modeling
+![cf](http://i.imgur.com/7v5ASc8.png) 13: Object Relational Mapping
 ===
 
 ## Learning Objectives
-* Students will learn about realtionship modeling
-* Students will be ablue to create one to one, one to many, and many to many model relationships using a MongoDB ORM
+* Students will learn about Object Relation Mapping (ORM)
+* Students will learn about Object Document Mapping (ODM)
+* Students will learn to model data using a MongoDB ODM
 
 ## Resources
-* Read [mongoose populate docs](http://mongoosejs.com/docs/populate.html)
-* Skim [mongoose api docs](http://mongoosejs.com/docs/api.html)
+* Read [mongoose guide](http://mongoosejs.com/docs/guide.html)
 
-## Model Relationships
-When the modeling real world as data you will quickly discover that data has relationships to other data. In fact in the real world it is rare, if not impossible, for something to exist that has no relationships to other things. On the other hand in the theoretical, world we can describe a thing with out describing its relationships to other things. Software engineers have discoverd useful ways to describe the relationships (or lack of) between data that can easily be mapped to a database. 
+## ORMs and ODMs
+Object Relational Mapping (ORM) is a programming technique for converting
+relational database models to a programming language data-type using Object
+Oriented Programing. ORM libraries enable developers to use their programming
+language to control a database instead of using the database's native query
+language. They can help developers write cleaner and safer code, by abstracting
+away the complexities of database languages. Object Document Mapping (ODM)
+libraries function similar to ORM libraries but work with NoSQL databases that
+use document database models.
 
-#### One 
-A Model that stands on its own. A web app example includes a simple Note that has no relationship with any other model. It contains all the data it needs.
+## Mongoose Example
+```js
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/test', { useMongoClient: true })
+  .then(createCat)
+  .catch(err => console.log(err.message));
 
+function createCat() {
+  // Create something to model Cats
+  var Cat = mongoose.model('Cat', { name: String, sound: String });
+
+  // Create a cat, save it to the database and read it.
+  var kitty = new Cat({ name: 'Zildjian', sound: 'meow'});
+  kitty.save(function (err, savedCat) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(savedCat.name, 'says', savedCat.sound);
+    }
+
+    mongoose.disconnect();
+  });
+}
 ```
-Note
-  id: 1
-  content 'get milk and cookies.'
+
+## Common Mongoose Methods
+Mongoose provides these useful CRUD methods
+
+* `Cat.save()`
+* `Cat.findById(id)`
+* `Cat.find()`
+* `Cat.findByIdAndRemove(id)`
+* `Cat.findByIdAndUpdate(id, modelParams)`
+  * `modelParams = {name: 'Happy Zildjian', sound: 'purr'})`
+  * Lots of [docs](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate)
+    to read on this one!
+    
+## Mongoose Query Methods
+Mongoose provides a way to query documents too.
+
+* [Mongoose Queries](http://mongoosejs.com/docs/queries.html)
+
+Here's a simple query:
+
+```js
+Tshirts.find({ size: 'small' }).where('createdDate').gt(oneYearAgo).exec(callback);
 ```
 
-#### One to One
-When a Model Foo that is related to a sigle Model Bar. Some web app examples include every user having a single profile, every profile having a single profile photo, every client is limited to a single contact email. 
+Here's two complex examples to give you an idea of what else it allows you to do:
 
-```
-User 
-  id: 888
-  username: slugbyte
-  profileID: 123
-
-Profile 
-  id: 123
-  bio: 'i love javascript'
-  url: 'www.codefellows.com'
-  userID: 888
-```
-
-#### One to Many
-A Model Foo that is related to many Bar Models. Some web app examples include every user having may posts but posts have a singe user, every photo having many comments but each comment is to a single photo, every post having many likes but each like is to a single post.
-
-```
-Photo
-  id: 5678
-  url: 'www.example.com/image/sunset.jpg'
-  comments: [ 44 65 78 ]
-
-Comment
-  id: 44
-  content: 'SO MUCH BEAUTY! <3'
-
-Comment
-  id: 65
-  content: 'awesome photo'
+```js
+Person.
+  find({
+    occupation: /host/,
+    'name.last': 'Ghost',
+    age: { $gt: 17, $lt: 66 },
+    likes: { $in: ['vaporizing', 'talking'] }
+  }).
+  limit(10).
+  sort({ occupation: -1 }).
+  select({ name: 1, occupation: 1 }).
+  exec(callback);
   
-Comment
-  id: 78
-  content: 'LUL, look at the clouds'
-```
-  
-  
-#### Many to Many
-Many Foo models that can each have relationships to many Bar Models. A web app examples includes every user having a relationship with many friends and each of those users have relationships with a many different freinds. 
-
-Some databases (including mongodb) do not nativly support models having many to many relationships, but many to many can still be created through the use of a second model.
-
-###### Using One Model
-```
-User 
-  id: 1234
-  username: 'teapot'
-  organisations: [ 1001 3333 4321 ]
-
-Organization 
-  id: 1001
-  username: 'codefellows'
-  users: [ 1234 5000 ]
+// Using query builder
+Person.
+  find({ occupation: /host/ }).
+  where('name.last').equals('Ghost').
+  where('age').gt(17).lt(66).
+  where('likes').in(['vaporizing', 'talking']).
+  limit(10).
+  sort('-occupation').
+  select('name occupation').
+  exec(callback);
 ```
 
-###### Using A Second Model
-```
-User 
-  id: 1234
-  username: 'teapot'
-  membership: 33
+## Don't Like Mongo Yet?
+Find an interesting JSON data set and see how easily you can import it into
+MongoDB.
 
-Orginazation 
-  id: 1001
-  username: 'codefellows'
-  membership: 33
-  
-Membership
-  id: 33
-  user: 1234
-  organization: 1001
+This is an example of import "Now That's What I Call Music!" data from a JSON
+file. (The file is available in the demos folder).
+
 ```
+mongoimport --jsonArray --db nowmusic --collection tracks now-thats-what-i-call-music.json
+```
+
