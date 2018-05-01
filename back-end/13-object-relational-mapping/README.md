@@ -10,7 +10,7 @@
 * Skim [mongoose api docs](http://mongoosejs.com/docs/api.html)
 
 ## Model Relationships
-When the modeling real world as data you will quickly discover that data has relationships to other data. Infact in the real world it is rare, if not impossible, for something to exist that has no relationships to other things. On the other hand in the theoretical, world we can describe a thing with out describing its relationships to other things. Software engineers have discoverd useful ways to describe the relationships (or lack of) between data that can easily be maped to a database. 
+When the modeling real world as data you will quickly discover that data has relationships to other data. In fact in the real world it is rare, if not impossible, for something to exist that has no relationships to other things. On the other hand in the theoretical, world we can describe a thing with out describing its relationships to other things. Software engineers have discoverd useful ways to describe the relationships (or lack of) between data that can easily be maped to a database. 
 
 #### One 
 A Model that stands on its own. A web app example includes a simple Note that has no relationship with any other model, It contains all the data it needs.
