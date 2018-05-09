@@ -7,6 +7,8 @@ export default class KAryTree {
     this.root = root;
   }
 
+  // Time : O(n)
+  // Space : O(w) -> O(n)
   breadthSearchTraversal() {
     if (!this.root) {
       return null;
