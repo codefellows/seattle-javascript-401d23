@@ -1,11 +1,14 @@
 {
-  "name": "frontend-tools",
+  "name": "26-frontend-tooling-and-react",
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "watch": "webpack-dev-server --config webpack.dev.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack-dev-server --config webpack.dev.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
@@ -31,8 +34,5 @@
     "webpack-dev-server": "^3.1.4",
     "webpack-merge": "^4.1.2"
   },
-  "dependencies": {},
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "dependencies": {}
 }

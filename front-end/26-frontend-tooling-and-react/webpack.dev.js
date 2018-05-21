@@ -1,12 +1,11 @@
-'use strict';
-
 const merge = require('webpack-merge');
-const commonConfig = require('./webpack.common');
+const common = require('./webpack.common.js');
 const { HotModuleReplacementPlugin } = require('webpack');
 
 const webpackDevConfig = {};
 
 webpackDevConfig.mode = 'development';
+
 webpackDevConfig.devtool = 'inline-source-map';
 
 webpackDevConfig.devServer = {
@@ -32,4 +31,4 @@ webpackDevConfig.module.rules = [
   },
 ];
 
-module.exports = merge(commonConfig, webpackDevConfig);
+module.exports = merge(common, webpackDevConfig);

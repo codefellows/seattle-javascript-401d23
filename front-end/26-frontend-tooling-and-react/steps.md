@@ -10,3 +10,4 @@
 - Disable  the `class-methods-use-this` rule.
 - config webpack
 - add a `watch` script in package.json
+- insteall `React Dev Tools` in chrome

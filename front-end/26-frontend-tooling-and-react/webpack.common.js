@@ -1,9 +1,6 @@
-'use strict';
-
 require('dotenv').config();
-// Vinicio: These files won't be transpiled
 
-const HTMLWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const webpackConfig = module.exports = {};
 
@@ -16,8 +13,8 @@ webpackConfig.output = {
 };
 
 webpackConfig.plugins = [
-  new HTMLWebpackPlugin({
-    title: '401d23. If we can see this, you copy pasted',
+  new HtmlWebpackPlugin({
+    title: '401d23. If we can see this, you copy pasted.',
   }),
 ];
 
@@ -33,7 +30,7 @@ webpackConfig.module.rules = [
     test: /\.js$/,
     exclude: /node_modules/,
     use: {
-      loader: 'babel-loader', // Vinicio - this is transpiling
+      loader: 'babel-loader',
       options: {
         presets: ['env', 'stage-0', 'react'],
         plugins: ['transform-react-jsx-source'],
