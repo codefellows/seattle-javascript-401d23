@@ -3,7 +3,7 @@
 require('dotenv').config();
 // Vinicio: These files won't be transpiled
 
-// const HTMLWebpackPlugin = require('html-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 const webpackConfig = module.exports = {};
 
@@ -15,11 +15,11 @@ webpackConfig.output = {
   publicPath: process.env.CDN_URL,
 };
 
-// webpackConfig.plugins = [
-//   new HTMLWebpackPlugin({
-//     title: '401d23. If we can see this, you copy pasted',
-//   }),
-// ];
+webpackConfig.plugins = [
+  new HTMLWebpackPlugin({
+    title: '401d23. If we can see this, you copy pasted',
+  }),
+];
 
 webpackConfig.module = {};
 webpackConfig.module.rules = [
@@ -31,6 +31,7 @@ webpackConfig.module.rules = [
   },
   {
     test: /\.js$/,
+    exclude: /node_modules/,
     use: {
       loader: 'babel-loader', // Vinicio - this is transpiling
       options: {
