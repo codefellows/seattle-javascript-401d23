@@ -6,7 +6,7 @@ process.env.CAT_CLOUD_SECRET = 'top secret';
 // set this to true or false depending on if you want to hit the mock AWS-SDK 
 // set to false if you want to make a real API call to your bucket
 
-const isAwsMock = true;
+const isAwsMock = false;
 
 if (isAwsMock) {
   process.env.AWS_BUCKET = 'fake';
@@ -16,5 +16,5 @@ if (isAwsMock) {
 } else {
   // remember to set your .env vars and add .env in .gitignore
   require('dotenv').config();
-}
+}  
 

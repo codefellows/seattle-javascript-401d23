@@ -8,11 +8,12 @@ class HeaderCompontent extends React.Component {
     // Vinicio - this line returns JSX
     return (
       <header>
-        <h1>401d23 Hello Wold</h1>
+        <h1>{this.props.headerText}</h1>
       </header>
     );
   }
 }
+
 
 class App extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class App extends React.Component {
     this.handleCounterDecrement = this.handleCounterDecrement.bind(this);
     this.setCounter = this.setCounter.bind(this);
   }
+
 
   handleCounterIncrement() {
     this.setState((previousState) => {
@@ -56,9 +58,12 @@ class App extends React.Component {
   render() {
     // Vinicio - line 38 is rendering the results of a MAP
     //         - line 39 is rendering the individual name
+
     return (
       <div>
-        <HeaderCompontent/>
+        <HeaderCompontent
+          headerText="Welcome, this is a passed in prop!"
+        />
         <h2> Hey! I am an H2 </h2>
         <p> Hey! this is a random Number { Math.random() } </p>
         <p> Here is a message from the developer: { this.state.message }</p>

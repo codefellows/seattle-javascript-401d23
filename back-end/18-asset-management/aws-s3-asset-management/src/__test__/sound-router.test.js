@@ -4,7 +4,8 @@ import superagent from 'superagent';
 import { startServer, stopServer } from '../lib/server';
 import { pRemoveSoundMock, pCreateSoundMock } from './lib/sound-mock';
 
-// set this to true or false depending on if you want to hit the mock AWS-SDK or if you want to hit the real AWS-SDK, i.e., upload an asset to your real bucket
+// set this to true or false depending on if you want to hit the mock 
+// AWS-SDK or if you want to hit the real AWS-SDK, i.e., upload an asset to your real bucket
 
 const apiUrl = `http://localhost:${process.env.PORT}`;
 

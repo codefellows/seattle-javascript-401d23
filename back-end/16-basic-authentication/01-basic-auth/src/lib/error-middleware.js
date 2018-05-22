@@ -14,6 +14,7 @@ export default (error, request, response, next) => { // eslint-disable-line no-u
   //-----------------------------------------------------------------
   // Vinicio - I know that if we are here, it's another type or error
   const errorMessage = error.message.toLowerCase();
+  console.log(errorMessage, 'ERROR MESSAGE');
 
   if (errorMessage.includes('objectid failed')) {
     logger.log(logger.INFO, 'Responding with a 404 code');

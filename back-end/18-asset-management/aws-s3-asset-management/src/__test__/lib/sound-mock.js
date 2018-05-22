@@ -1,10 +1,9 @@
 'use strict';
 
 import faker from 'faker';
-import { pCreateAccountMock, pRemoveAccountMock } from '../lib/account-mock';
+import { pCreateAccountMock, pRemoveAccountMock } from '../lib/account-mock'; /*eslint-disable-line*/
 import Sound from '../../model/sound';
 import Account from '../../model/account';
-
 
 const pCreateSoundMock = () => {
   const resultMock = {};
@@ -23,7 +22,6 @@ const pCreateSoundMock = () => {
       return resultMock;
     });
 };
-
 
 const pRemoveSoundMock = () => Promise.all([Account.remove({}), Sound.remove({})]);
 
