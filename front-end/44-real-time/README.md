@@ -1,33 +1,29 @@
-![cf](http://i.imgur.com/7v5ASc8.png) 44: Frontend Deployment
+![cf](http://i.imgur.com/7v5ASc8.png) 43: Realtime
 ===
 
 ## Learning Objectives
-* Students will learn about Content Distribution Networks (CDN)
-* Students will learn to setup AWS Cloudfront to host their static assets
+* Students will learn to add SocketIO to an express app
+* Students will learn to add realtime features to their applications
 
-## Readings
-* Read [AWS CloudFront](https://aws.amazon.com/cloudfront/)
+## Resources
+* [SocketIO getting started](https://socket.io/get-started/chat/)
+* [SocketIO docs](https://socket.io/docs/)
 
 ## Outline
 
-### Transport Layer Security (TLS/SSL)
-The Transport Layer Security (TLS) was previously the Secure Socket Layer (SSL). TLS is a crypographic protocol that provides secure communications over a computer network. TLS enables communications between computers to be private. It does this by using asymetric cyphers to encrypt data before sending it across the network.
-When a client and server make a TLS connection, they negotiate a stateful connection using the following handshake. 
- 
-0. The client connects to the TLS enabled server and provides a list of supported cyphers
-0. The server picks a cypher that it supports and notifies the client
-0. The server sends its public encryption key or a digital certificate
-0. The client confirms the validity digital certifictate
-0. The client generates and sends sessions keys used for the connection
+### Message Exchange Patterns
+In software architecture, a message pattern describes how two diffrent parts of a message communicate with each other. This can be done over a network or between pieces of code. Theses communication patterns usually fall into the `push` or `pull` models. The push model is data driven.  When the serving node has content to be published, it will send the data out without requiring a request from the recieving end. The pull model expects the serving node to wait for data to be requested by the recieving end, before sending it out.
 
-### Asymetric Cyper
-An asymetric cyper is a cryptographic algorithim that uses seperate keys for encrypting and decrypting data. These keys are often referred to as public and private keys. The public key is used to encrypt the data and the private key is used to decrypt the data. An analogy for this might be: if a store owner had two types of keys to her store (several for locking it up - copies of a public key) and one for opening it (a private key), all of her employes could have access to the key that locks the store. Once the store was locked, she would be the only one that could open it.
+### Publish/Subscribe (Push)
+Clients connect to Services and listen for events. Services publish data on events regardless if clients are listening.
 
-### Digital Certificate
-A digital certificate is an document used to prove the ownership of a public key. The certificate contains the servers name, the trusted certificate authority, and the public encryption key. A certification authority is an entity that both issues and verifies digital certificates.
+### Request/Response (Pull)
+Clients connect to Services and make requests. Services respond to the requests directly with data.
 
-### HTTPS
-HTTPS is an HTTP connection encrypted by TLS or SSL. HTTPS is supported by browsers and is used to authenticate the visited website and protect the privacy/integrity of the exchanged data.
+### Browser Realtime
+##### Websockets
+Websockets are a realtime two way communication protocol over a TCP connection. Websockets are part of the HTML5 specification. They are designed to be implemented in browsers and web servers. Websocket connections are interpreted by HTTP servers as as an `UPGRADE` request. Websockets enable interaction between a browser and a webserver with lower overhead, enabling real time data transfer to and from the server. The communications are done over port 80 or 443 in case of TLS(SSL) connectoins.
 
-### Content Delivery Network (CDN)
-A CDN is a geographically distributed network of proxy servers and data centers. It's job is to distribute static assets to spatially relative end users and provide high availablity and performance.
+##### Long Polling
+Long polling is a technique used by older browesers to enable them get the effect of subscribing to the server. With long polling, the client makes a request to the server, but the server is not expected to respond immediately. The server will respond only when the information becomes available. This is not technically a true push, but it allows the emulation of a push when websockets is not possible. 
+
