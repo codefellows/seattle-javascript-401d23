@@ -11,7 +11,7 @@ const recursiveArrayAddition = (array) => {
 };
 
 //------------------------------------------------------------------
-// APPROACH 1 - HEAD/TAIL BASED
+// APPROACH 1
 //------------------------------------------------------------------
 const _recursiveArrayAddition = (array, index, sum) => {
   if (index === array.length - 1) {
@@ -22,7 +22,7 @@ const _recursiveArrayAddition = (array, index, sum) => {
 
 console.log(recursiveArrayAddition(sampleArray));
 //------------------------------------------------------------------
-// APPROACH 1 - HEAD/TAIL BASED
+// APPROACH 2
 //------------------------------------------------------------------
 // const _recursiveArrayAddition = (array, index) => {
 //   // Vinicio - Base Case
